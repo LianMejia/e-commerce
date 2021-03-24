@@ -1,6 +1,10 @@
+
 import React from 'react';
+import './Product.css'
+import abrigo from '../../assets/abrigo.jpg';
 /* import ApiReact from '../ApiReact'; */
 
+const url = "http://localhost:3002/products";
 class Product extends React.Component{
     //Inicialisamos el estado
     /* state = {
@@ -41,6 +45,15 @@ class Product extends React.Component{
         }
     }; */
 
+    /* 
+    nombre producto
+    descripcion producto
+    precio producto
+    talla producto
+    cantidad del producto
+    Imagen producto
+    */
+
     state = {
         data: []
     }
@@ -50,7 +63,7 @@ class Product extends React.Component{
     }
 
     fetchData = async () => {
-        let res = await fetch('http://localhost:3002/users');
+        let res = await fetch(url);
         let data = await res.json();
         this.setState({
             data
@@ -58,49 +71,31 @@ class Product extends React.Component{
         console.log(data)
     }
 
+    handleSubmit = () => {
+        return(
+            console.log("Okey")
+        )
+    }
+
     render(){
-        /* if(this.state.loading === true){
-            return 'Loading...'
-        }; */
 
         return(
-            <section>
-                <h1>Product</h1>
-                <ul>
-                    {this.state.data.map((demo) => {
-                        return(
-                            <li key={demo.id}>
-                                <p>{demo.id}</p>
-                                <p>{demo.nombre}</p>
-                            </li>
+                <div className="cajaProducts">
+                    <div className="subCajaProducts">
+                            {this.state.data.map((demo) => {
+                                return(
+                                    <ul key={demo.id}>
+                                    <li onClick={this.handleSubmit}>
+                                        <img src={abrigo} alt="abrigo"/>
+                                        <p className="parrafoNombre">{demo.nombre}</p>
+                                        <p>${demo.precio}.00</p>
+                                    </li>
+                                    </ul>
                         )
-                    })}
-                </ul>
-                {/* <div>
-                    <ul>
-                        {this.pruebaProducts.data.map((demo) => {
-                            return(
-                                <li>
-                                    <p>{demo.id}</p>
-                                    <p>{demo.nombre}</p>
-                                    <p>{demo.apellido}</p>
-                                </li>
-                            )
                         })}
-                    </ul>
-                    <table>
-                        {this.pruebaProducts.data.map((demo) => {
-                            return(
-                                <tr>
-                                    <td>{demo.id}</td>
-                                    <td>{demo.nombre}</td>
-                                    <td>{demo.apellido}</td>
-                                </tr>
-                            )
-                        })}
-                    </table>
-                </div> */}
-            </section>
+                        
+                    </div>
+                </div>
         );
     }
 }

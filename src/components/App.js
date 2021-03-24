@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './Home/Home';
 import Product from './product/Product';
+import AdminDashboard from './AdminDashboard/AdminDashboard';
 /* import Products from './products/Products'; */
 
 function App(){
@@ -10,6 +11,7 @@ function App(){
            <Switch>
               <Route exact path="/home" component={Home} />
               <Route exact path="/product" component={Product} />
+              <Route exact path="/admin" component={AdminDashboard} />
               {/* <Route exact path="/products" component={Products} /> */}
            </Switch>
         </BrowserRouter>
